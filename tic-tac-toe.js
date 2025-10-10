@@ -1,24 +1,33 @@
 document.addEventListener('DOMContentLoaded', function() {
     const squares = document.querySelectorAll('#board div');
-    let nextIs = true; 
-    const boardState = [null, null, null, null, null, null, null, null, null];
+    let nextUp = true; 
+    const boardGrid = [null, null, null, null, null, null, null, null, null];
 
     squares.forEach(function(square, index) {
         square.classList.add('square');
 
         square.addEventListener('click', function() {
-            if (boardState[index] == 'O' || boardState[index] == 'X') return;
+            if (boardGrid[index] == 'O' || boardGrid[index] == 'X') return;
             let mark = null;
-            if (nextIs) {
+            if (nextUp) {
                 mark = 'X';
-            } else {
+                square.classList.add('X');
+            } 
+            else {
                 mark = 'O';
+                square.classList.add('O');
             }
             square.textContent = mark;          
-            square.classList.add(mark);        
-            boardState[index] = mark;           
+            boardGrid[index] = mark;           
 
-            nextIs = !nextIs;                 
+            nextUp = !nextUp;                 
+        });
+        square.addEventListener('mouseenter', function() {
+        square.classList.add('hover');     
+        });
+
+        square.addEventListener('mouseleave', function() {
+        square.classList.remove('hover');  
         });
     });
 
