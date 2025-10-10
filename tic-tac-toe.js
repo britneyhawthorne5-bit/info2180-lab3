@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
         square.classList.add('square');
 
         square.addEventListener('click', function() {
-            if (boardGrid[index] == 'O' || boardGrid[index] == 'X' || statusDiv.classList.contains('you-won')) return;
+            if (boardGrid[index] == 'O' || boardGrid[index] == 'X') return;
+            if (statusDiv.classList.contains('you-won')) return;
             let mark = null;
             if (nextUp) {
                 mark = 'X';
@@ -66,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Optional: display if board is full and no winner
         if (!boardGrid.includes(null)) {
             statusDiv.textContent = "It's a draw!";
         }
